@@ -1,0 +1,19 @@
+{
+  "name": "dronemanagement-backend",
+  "version": "1.0.0",
+  "description": "backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogive/dronemanagement-backend.git"
+  },
+  "author": "github.com/rogive",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rogive/dronemanagement-backend/issues"
+  },
+  "homepage": "https://github.com/rogive/dronemanagement-backend#readme"
+}
