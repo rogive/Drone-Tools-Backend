@@ -14,7 +14,7 @@ module.exports = {
     try {
       const data = req.body;      
       const pilots = await Pilot.create(data);
-
+      res.status(200).json(pilots);
     } catch (err) {
       res.status(400).json(err);
     }

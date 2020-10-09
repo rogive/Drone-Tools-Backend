@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require ("../database/connection");
-//const Project = require('./project.model');
+const Pilot = require('./pilot.model');
 
-const Pilot = sequelize.define("Pilot", {
+const Project = sequelize.define("Project", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -13,61 +13,6 @@ const Pilot = sequelize.define("Pilot", {
       },
       notNull: {
         msg: 'Porfavor, ingrese un valor válido para el campo nombre'
-      }
-    }
-  },
-  lastname: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      isAlpha: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo apellido'
-      },
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo apellido'
-      }
-    }
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    primaryKey: true,
-    validate: {
-      isEmail: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo email'
-      },
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo email'
-      }
-    }
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo contraseña'
-      }
-    }
-  },
-  department: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo departamento'
-      }
-    }
-  },
-  city: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo departamento'
       }
     }
   },
@@ -115,8 +60,8 @@ const Pilot = sequelize.define("Pilot", {
       }
     }
   }
-}, {timestamps: false});
+});
 
-Pilot.hasMany(Project);
+Project.belongsTo(Pilot);
 
-module.exports = Pilot
+module.exports = Project
