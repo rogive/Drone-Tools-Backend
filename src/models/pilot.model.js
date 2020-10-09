@@ -1,8 +1,14 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require ("../database/connection");
-//const Project = require('./project.model');
+const Project = require('./project.model');
 
 const Pilot = sequelize.define("Pilot", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -33,7 +39,6 @@ const Pilot = sequelize.define("Pilot", {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
-    primaryKey: true,
     validate: {
       isEmail: {
         args: true,
@@ -117,6 +122,7 @@ const Pilot = sequelize.define("Pilot", {
   }
 }, {timestamps: false});
 
-Pilot.hasMany(Project);
+Pilot.hasMany(sequelize.models.Project);
+Project.belongsTo(sequelize.models.Pilot);
 
 module.exports = Pilot

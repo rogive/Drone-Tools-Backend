@@ -1,8 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require ("../database/connection");
-const Pilot = require('./pilot.model');
 
 const Project = sequelize.define("Project", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -61,7 +66,5 @@ const Project = sequelize.define("Project", {
     }
   }
 });
-
-Project.belongsTo(Pilot);
 
 module.exports = Project
