@@ -29,21 +29,17 @@ module.exports = {
   async signin(req, res) {
     try {
       const { email, password } = req.body
-      const pilot = await Pilot.findOne({ email })
+      const pilot = await Pilot.findOne({ where: { email } })
       if (!pilot) {
         throw Error("El usuario no existe")
       }
-
       const isValid = await bcrypt.compare(password, pilot.password)
-
       if (!isValid) {
         throw Error("Usuario o contraseña invalido!")
       }
-
       const token = jwt.sign({ id: pilot._id }, process.env.SECRET, {
         expiresIn: 60 * 60 * 24 * 365,
       })
-
       res.status(200).json({ token, pilot })
     } catch (err) {
       res.status(401).json({ message: err.message })
