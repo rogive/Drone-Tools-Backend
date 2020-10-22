@@ -49,13 +49,24 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
     }
-  },
+  },  
   async destroy(req, res) {
     try {
       const { id } = req.params;
-      const project = await Project.findByPk(id);
-      await project.destroy();
+      const project = await Project.findByPk(id)
+      const projectDeleted = await project.destroy()
       res.status(200).json(project);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
+  async destroyandlist(req, res) {
+    try {
+      const { id } = req.params;
+      const project = await Project.findByPk(id)
+      const projectDeleted = await project.destroy()
+      const newProjects = await Project.findAll()
+      res.status(200).json(newProjects);
     } catch (err) {
       res.status(400).json(err);
     }

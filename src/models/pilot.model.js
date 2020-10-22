@@ -60,21 +60,11 @@ const Pilot = sequelize.define("Pilot", {
   },
   department: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo departamento'
-      }
-    }
+    allowNull: true,
   },
   city: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo departamento'
-      }
-    }
+    allowNull: true,
   },
   flighttime: {
     type: DataTypes.STRING,
