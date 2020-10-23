@@ -37,6 +37,10 @@ const Pilot = sequelize.define("Pilot", {
       }
     }
   },
+  profileUrl: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,

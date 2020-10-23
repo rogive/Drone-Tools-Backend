@@ -46,6 +46,36 @@ module.exports = {
     }
   },
 
+  async signupandsignin(req, res) {
+    try {
+      const data = req.body
+      const { email, password } = data
+
+      const encryptedPassword = await bcrypt.hash(data.password, 8)
+      console.log({...data, password: encryptedPassword})
+
+      const pilots = await Pilot.create({ ...data, password: encryptedPassword })
+      console.log("k1")
+
+      console.log(pilots)
+      const pilot = await Pilot.findOne({ where: { email } })
+      if (!pilot) {
+        throw Error("El usuario no existe")
+      }
+/*       const isValid = await bcrypt.compare(password, pilot.password)
+      if (!isValid) {
+        throw Error("Usuario o contraseña invalido!")
+      } */
+      const token = jwt.sign({ id: pilot._id }, process.env.SECRET, {
+        expiresIn: 60 * 60 * 24 * 365,
+      })
+      res.status(200).json({ token, pilot })
+
+    } catch (err) {
+      res.status(400).json(err)
+    }
+  },
+
   async find(req, res) {
     try {
       const { id } = req.params
