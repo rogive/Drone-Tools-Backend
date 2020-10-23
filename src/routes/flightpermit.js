@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const flightlogController = require('../controllers/flightlog.controller')
+const flightpermitController = require('../controllers/flightpermit.controller')
 
-router.route("/list").get(flightlogController.list)
-router.route("/listbypilot/:id").get(flightlogController.listbypilot)
-router.route("/create").post(flightlogController.create)
-router.route("/delete/:id").delete(flightlogController.destroy)
-router.route("/deleteandlist/:id").delete(flightlogController.destroyandlist)
+router.route("/list").get(flightpermitController.list)
+router.route("/listbypilot/:id").get(flightpermitController.listbypilot)
+router.route("/create").post(flightpermitController.create)
+router.route("/delete/:id").delete(flightpermitController.destroy)
+router.route("/deleteandlist/:id").delete(flightpermitController.destroyandlist)
 module.exports = router

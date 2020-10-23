@@ -1,11 +1,11 @@
-const Flightlog = require('../models/flightlog.model')
+const Flightpermit = require('../models/flightpermit.model')
 require("dotenv").config()
 
 module.exports = {
   async list(req, res) {
     try {
-      const flightlogs = await Flightlog.findAll()
-      res.status(200).json(flightlogs)
+      const flightpermits = await Flightpermit.findAll()
+      res.status(200).json(flightpermits)
     } catch (err) {
       res.status(400).json(err)
     }
@@ -13,10 +13,10 @@ module.exports = {
   async listbypilot(req, res) {
     try {
       const { id } = req.params
-      const flightlogs = await Flightlog.findAll({
+      const flightpermits = await Flightpermit.findAll({
         where: { PilotId: id },
       })
-      res.status(200).json(flightlogs)
+      res.status(200).json(flightpermits)
     } catch (err) {
       res.status(400).json(err)
     }
@@ -24,8 +24,8 @@ module.exports = {
   async create(req, res) {
     try {
       const data = req.body
-      const flightlogs = await Flightlog.create(data)
-      res.status(200).json(flightlogs)
+      const flightpermits = await Flightpermit.create(data)
+      res.status(200).json(flightpermits)
     } catch (err) {
       res.status(400).json(err)
     }
@@ -33,13 +33,13 @@ module.exports = {
   async find(req, res) {
     try {
       const { id } = req.params
-      const flightlog = await Flightlog.findByPk(id)
+      const flightpermit = await Flightpermit.findByPk(id)
 
-      if (!flightlog) {
+      if (!flightpermit) {
         throw Error("El registro no existe")
       }
 
-      res.status(200).json({ flightlog })
+      res.status(200).json({ flightpermit })
     } catch (err) {
       res
         .status(401)
@@ -50,7 +50,7 @@ module.exports = {
     try {
       const { id } = req.params
       const data = req.body
-      const [updated] = await Flightlog.update(data, { where: { id } })
+      const [updated] = await Flightpermit.update(data, { where: { id } })
       if (updated) {
         res.status(200).json(data)
       }
@@ -64,9 +64,9 @@ module.exports = {
   async destroy(req, res) {
     try {
       const { id } = req.params
-      const flightlog = await Flightlog.findByPk(id)
-      const flightlogDeleted = await Flightlog.destroy()
-      res.status(200).json(flightlog)
+      const flightpermit = await Flightpermit.findByPk(id)
+      const flightpermitDeleted = await Flightpermit.destroy()
+      res.status(200).json(flightpermit)
     } catch (err) {
       res.status(400).json(err)
     }
@@ -74,11 +74,11 @@ module.exports = {
   async destroyandlist(req, res) {
     try {
       const { id } = req.params
-      const flightlog = await Flightlog.findByPk(id, { include: { all: true }})
-      const pilotId = flightlog.Pilot.dataValues.id
-      const flightlogDeleted = await Flightlog.destroy()
-      const flightlogs = await Flightlog.findAll({ where: { PilotId: pilotId }})
-      res.status(200).json(flightlogs)
+      const flightpermit = await Flightpermit.findByPk(id, { include: { all: true }})
+      const pilotId = flightpermit.Pilot.dataValues.id
+      const flightpermitDeleted = await Flightpermit.destroy()
+      const flightpermits = await Flightpermit.findAll({ where: { PilotId: pilotId }})
+      res.status(200).json(flightpermits)
     } catch (err) {
       res.status(400).json(err)
     }
