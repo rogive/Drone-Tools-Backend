@@ -65,6 +65,6 @@ const Project = sequelize.define("Project", {
       }
     }
   }
-});
+})
 
 module.exports = Project

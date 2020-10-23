@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 module.exports = {
   async list(req, res) {
     try {
-      const pilots = await Pilot.findAll()
+      const pilots = await Pilot.findAll({ include: { all: true }})
       res.status(200).json(pilots)
     } catch (err) {
       res.status(400).json(err)
