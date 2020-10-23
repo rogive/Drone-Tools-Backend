@@ -1,10 +1,7 @@
-const { Sequelize, DataTypes } = require("sequelize")
-const sequelize = require ("../database/connection")
-const Project = require('./project.model')
-const Flightlog = require('./flightlog.model')
-const Flightpermit = require('./flightpermit.model')
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require ("../database/connection");
 
-const Pilot = sequelize.define("Pilot", {
+const Flightlog = sequelize.define("Flightlog", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -24,49 +21,18 @@ const Pilot = sequelize.define("Pilot", {
       }
     }
   },
-  lastname: {
+  company: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
       isAlpha: {
         args: true,
-        msg: 'Debe ingresar un valor válido para el campo apellido'
+        msg: 'Debe ingresar un valor válido para el campo de cliente'
       },
       notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo apellido'
+        msg: 'Porfavor, ingrese un valor válido para el campo de cliente'
       }
     }
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo email'
-      },
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo email'
-      }
-    }
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo contraseña'
-      }
-    }
-  },
-  department: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  city: {
-    type: DataTypes.STRING,
-    allowNull: true,
   },
   flighttime: {
     type: DataTypes.STRING,
@@ -112,13 +78,6 @@ const Pilot = sequelize.define("Pilot", {
       }
     }
   }
-}, {timestamps: false})
+})
 
-Pilot.hasMany(sequelize.models.Project)
-Project.belongsTo(sequelize.models.Pilot)
-Pilot.hasMany(sequelize.models.Flightlog)
-Flightlog.belongsTo(sequelize.models.Pilot)
-Pilot.hasMany(sequelize.models.Flightpermit)
-Flightpermit.belongsTo(sequelize.models.Pilot)
-
-module.exports = Pilot
+module.exports = Flightlog
