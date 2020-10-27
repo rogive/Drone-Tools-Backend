@@ -17,7 +17,7 @@ module.exports = {
         where: { PilotId: id },
       })
       if (flightlogs) res.status(200).json(flightlogs)
-      else res.status(200).json()
+      else res.status(200).json([])
     } catch (err) {
       res.status(400).json(err)
     }

@@ -9,8 +9,8 @@ const app = express()
 
 app.use(express.json())
 app.use(cors())
-sequelize.sync()
-//sequelize.sync({ force: true })
+//sequelize.sync()
+sequelize.sync({ force: true })
 
 app.use("/pilot", pilotRouter)
 app.use("/pilot/project", projectRouter)

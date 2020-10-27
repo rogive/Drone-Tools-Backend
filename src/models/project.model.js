@@ -12,12 +12,21 @@ const Project = sequelize.define("Project", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo nombre'
-      },
       notNull: {
         msg: 'Porfavor, ingrese un valor válido para el campo nombre'
+      }
+    }
+  },
+  company: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isAlpha: {
+        args: true,
+        msg: 'Debe ingresar un valor válido para el campo de cliente'
+      },
+      notNull: {
+        msg: 'Porfavor, ingrese un valor válido para el campo de cliente'
       }
     }
   },

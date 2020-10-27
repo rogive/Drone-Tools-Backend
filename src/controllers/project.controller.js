@@ -16,7 +16,8 @@ module.exports = {
       const projects = await Project.findAll({
         where: { PilotId: id },
       })
-      res.status(200).json(projects)
+      if (projects) res.status(200).json(projects)
+      else res.status(200).json([])
     } catch (err) {
       res.status(400).json(err)
     }

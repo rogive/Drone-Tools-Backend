@@ -12,25 +12,44 @@ const Flightlog = sequelize.define("Flightlog", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo nombre'
-      },
       notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo nombre'
+        msg: 'Porfavor, ingrese un valor válido en el nombre de registro'
       }
     }
   },
-  company: {
+  project: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: {
-        args: true,
-        msg: 'Debe ingresar un valor válido para el campo de cliente'
-      },
       notNull: {
-        msg: 'Porfavor, ingrese un valor válido para el campo de cliente'
+        msg: 'Porfavor, ingrese un valor válido para el campo proyecto'
+      }
+    }
+  },
+  categorie: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'Porfavor, ingrese un valor válido para el campo categoria'
+      }
+    }
+  },
+  brand: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'Porfavor, ingrese un valor válido para el campo marca'
+      }
+    }
+  },
+  model: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: 'Porfavor, ingrese un valor válido para el campo modelo'
       }
     }
   },
